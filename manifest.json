@@ -3,7 +3,7 @@
 
     "name": "__MSG_extName__",
     "description": "__MSG_extDescription__",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "default_locale": "en",
 
     "icons": {
@@ -18,7 +18,7 @@
     ],
 
     "background": {
-        "page": "app/background.html"
+        "scripts": ["app/common.js", "app/background.js"]
     },
 
     "options_page": "app/options.html"
