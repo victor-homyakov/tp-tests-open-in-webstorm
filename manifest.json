@@ -1,0 +1,40 @@
+{
+    "manifest_version": 2,
+
+    "name": "__MSG_extName__",
+    "description": "__MSG_extDescription__",
+    "version": "0.1.5",
+    "default_locale": "en",
+
+    "icons": {
+        "16": "img/icon16.png",
+        "32": "img/icon32.png",
+        "48": "img/icon48.png",
+        "128": "img/icon128.png"
+    },
+
+    "permissions": [
+        "contextMenus"
+    ],
+
+    "background": {
+        "page": "app/background.html"
+    },
+
+    "options_page": "app/options.html",
+
+    "plugins": [
+        {
+            "path": "simpleget/npsimpleGetPlugin.dll",
+            "public": false
+        },
+        {
+            "path": "simpleget/libsimpleGetPlugin.so",
+            "public": false
+        },
+        {
+            "path": "simpleget/libsimpleGetPlugin64.so",
+            "public": false
+        }
+    ]
+}

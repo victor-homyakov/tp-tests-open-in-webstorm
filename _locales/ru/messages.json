@@ -1,0 +1,35 @@
+{
+    "extName": {
+        "message": "Open TP3 JS test file in WebStorm"
+    },
+    "extDescription": {
+        "message": "Открывает файл из ссылки, выбранной на странице TP3 JS тестов, в WebStorm."
+    },
+    "title": {
+        "message": "Открыть в WebStorm"
+    },
+    "optionsTitle": {
+        "message": "Настройки"
+    },
+    "wsPathTitle": {
+        "message": "Путь к WebStorm"
+    },
+    "wsPathDescription": {
+        "message": "Полный путь к WebStorm на диске."
+    },
+    "rpcPortTitle": {
+        "message": "Порт XML-RPC"
+    },
+    "rpcPortDescription": {
+        "message": "Номер порта, на котором WebStorm принимает запросы XML-RPC (63342 по умолчанию)."
+    },
+    "tpPathTitle": {
+        "message": "Путь к проекту Targetprocess"
+    },
+    "tpPathDescription": {
+        "message": "Полный путь к проекту Targetprocess на диске."
+    },
+    "saveOptions": {
+        "message": "Сохранить настройки"
+    }
+}

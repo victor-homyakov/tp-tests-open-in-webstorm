@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Options</title>
+    <link rel="stylesheet" href="options.css" />
+    <script src="common.js"></script>
+    <script src="options.js"></script>
+</head>
+<body>
+<h1></h1>
+
+<form id="options-form">
+    <label>
+        <span class="option-title" id="wsPathTitle"></span>
+        <input type="text" class="option-value" id="wsPath" />
+        <span class="option-description" id="wsPathDescription"></span>
+    </label>
+
+    <label>
+        <span class="option-title" id="rpcPortTitle"></span>
+        <input type="text" class="option-value" id="rpcPort" />
+        <span class="option-description" id="rpcPortDescription"></span>
+    </label>
+
+    <label>
+        <span class="option-title" id="tpPathTitle"></span>
+        <input type="text" class="option-value" id="tpPath" />
+        <span class="option-description" id="tpPathDescription"></span>
+    </label>
+
+    <div class="buttons">
+        <button id="saveOptions"></button>
+    </div>
+</form>
+</body>
+</html>

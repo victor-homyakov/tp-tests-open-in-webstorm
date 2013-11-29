@@ -1,0 +1,35 @@
+{
+    "extName": {
+        "message": "Open TP3 JS test file in WebStorm"
+    },
+    "extDescription": {
+        "message": "Open JavaScript file from TP3 JS test page in WebStorm."
+    },
+    "title": {
+        "message": "Open in WebStorm"
+    },
+    "optionsTitle": {
+        "message": "Options"
+    },
+    "wsPathTitle": {
+        "message": "Path to the WebStorm"
+    },
+    "wsPathDescription": {
+        "message": "Absolute path of the WebStorm executable file."
+    },
+    "rpcPortTitle": {
+        "message": "XML-RPC port"
+    },
+    "rpcPortDescription": {
+        "message": "The port number used by the WebStorm to listen for incoming requests (63342 by default)."
+    },
+    "tpPathTitle": {
+        "message": "Path to the Targetprocess project"
+    },
+    "tpPathDescription": {
+        "message": "Absolute path of the Targetprocess project."
+    },
+    "saveOptions": {
+        "message": "Save options"
+    }
+}
