@@ -60,14 +60,6 @@ h1:before {
     content: '__MSG_optionsTitle__';
 }
 
-#wsPathTitle:before {
-    content: '__MSG_wsPathTitle__';
-}
-
-#wsPathDescription:before {
-    content: '__MSG_wsPathDescription__';
-}
-
 #rpcPortTitle:before {
     content: '__MSG_rpcPortTitle__';
 }

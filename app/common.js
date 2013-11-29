@@ -1,8 +1,7 @@
 var options = (function() {
     var defaults = {
-        wsPath: 'C:\\Program Files (x86)\\JetBrains\\WebStorm 7.0.1\\bin\\WebStorm.exe',
-        tpPath: 'C:\\tp3',
-        rpcPort: '63342'
+        rpcPort: '63342',
+        tpPath: 'C:\\tp3'
     };
 
     function getParam(name) {

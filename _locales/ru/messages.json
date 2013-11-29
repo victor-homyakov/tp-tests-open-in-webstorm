@@ -11,12 +11,6 @@
     "optionsTitle": {
         "message": "Настройки"
     },
-    "wsPathTitle": {
-        "message": "Путь к WebStorm"
-    },
-    "wsPathDescription": {
-        "message": "Полный путь к WebStorm на диске."
-    },
     "rpcPortTitle": {
         "message": "Порт XML-RPC"
     },

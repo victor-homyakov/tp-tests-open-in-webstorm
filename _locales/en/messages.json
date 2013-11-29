@@ -11,12 +11,6 @@
     "optionsTitle": {
         "message": "Options"
     },
-    "wsPathTitle": {
-        "message": "Path to the WebStorm"
-    },
-    "wsPathDescription": {
-        "message": "Absolute path of the WebStorm executable file."
-    },
     "rpcPortTitle": {
         "message": "XML-RPC port"
     },
