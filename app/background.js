@@ -46,37 +46,54 @@
     }
 
     /**
-     * @param {Object} info
-     * @param {String} info.linkUrl
-     * @param {Object} tab
+     * @param {String} url
      */
-    function onItemClick(info, tab) {
-        // info.linkUrl for async tests:
+    function parseUrl(url) {
+        url = url || '';
+
+        // url for async tests:
         // http://localhost/targetprocess/JavaScript/tau/scripts/tests.async/index.html?file=tests.async/components/board.plus/component.board.plus.hints.tests
-        // info.linkUrl for sync tests:
+        // url for sync tests:
         // http://localhost/targetprocess/JavaScript/tau/scripts/tests/view/view.timeline.navigator.tests.js
-        var url = info.linkUrl || '';
 
         // Path in file system:
         // C:\tp3\Code\Main\Tp.Web\JavaScript\tau\scripts\tests.async\components\board.plus\component.board.plus.hints.tests.js
 
         if (url.indexOf('?file=') >= 0) {
             // URL parts:
-            // http://localhost/targetprocess/JavaScript/tau/scripts/tests.async/index.html
-            // tests.async/components/board.plus/component.board.plus.hints.tests
+            // [0] http://localhost/targetprocess/JavaScript/tau/scripts/tests.async/index.html
+            // [1] tests.async/components/board.plus/component.board.plus.hints.tests
             url = url.split('?file=')[1];
-            openWithXmlRpc(url);
-            return;
+            return {
+                path: url
+            };
         } else if (/http:\/\/localhost.+\.js/.test(url)) {
             var lineAndColumn = (url.split('#')[1] || '').split(':');
             url = url
                 .replace(/http:\/\/localhost\/targetprocess\/JavaScript\/tau\/scripts\//, '')
                 .replace(/\.js.*/, '');
-            openWithXmlRpc(url, lineAndColumn[0], lineAndColumn[1]);
-            return;
+            return {
+                path: url,
+                line: lineAndColumn[0],
+                column: lineAndColumn[1]
+            };
         }
+        return null;
+    }
 
-        alert('This link does not contain path to JavaScript file.');
+    /**
+     * @param {Object} info
+     * @param {String} info.linkUrl
+     * @param {Object} tab
+     */
+    function onItemClick(info, tab) {
+        var url = parseUrl(info.linkUrl);
+
+        if (url) {
+            openWithXmlRpc(url.path, url.line, url.column);
+        } else {
+            alert('This link does not contain path to JavaScript file.');
+        }
     }
 
     var contextMenuProperties = {

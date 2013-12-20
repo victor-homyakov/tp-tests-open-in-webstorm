@@ -1,0 +1,10 @@
+{
+    "name": "tp-tests-open-in-webstorm",
+    "title": "Open JavaScript file from TP3 JS test page in WebStorm.",
+    "version": "0.1.8",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.7.1",
+        "grunt-contrib-qunit": "~0.3.0"
+    }
+}
