@@ -1,13 +1,5 @@
 /*global alert,chrome,options,console*/
 (function() {
-    function getProjectPath() {
-        return options.get('tpPath') + '/Code/Main/Tp.Web/JavaScript/tau';
-    }
-
-    function getFilePath(urlPart) {
-        return getProjectPath() + '/scripts/' + urlPart + '.js';
-    }
-
     /**
      * XML-RPC call details:
      * Method: fileOpener.open
@@ -22,7 +14,7 @@
      */
     function openWithXmlRpc(relativePath, line, column) {
         var rpcUrl = 'http://localhost:' + options.get('rpcPort') + '/rpc2';
-        var filePath = getFilePath(relativePath);
+        var filePath = options.getFilePath(relativePath);
 
         var args = [];
         args.push('<?xml version="1.0"?><methodCall><methodName>');
@@ -38,6 +30,7 @@
         }
 
         args.push('</params></methodCall>');
+        //console.debug('openWithXmlRpc', rpcUrl, args.join(''));
 
         var xhr = new XMLHttpRequest();
         xhr.open('post', rpcUrl, true, null, null);
@@ -46,48 +39,12 @@
     }
 
     /**
-     * @param {String} url
-     */
-    function parseUrl(url) {
-        url = url || '';
-
-        // url for async tests:
-        // http://localhost/targetprocess/JavaScript/tau/scripts/tests.async/index.html?file=tests.async/components/board.plus/component.board.plus.hints.tests
-        // url for sync tests:
-        // http://localhost/targetprocess/JavaScript/tau/scripts/tests/view/view.timeline.navigator.tests.js
-
-        // Path in file system:
-        // C:\tp3\Code\Main\Tp.Web\JavaScript\tau\scripts\tests.async\components\board.plus\component.board.plus.hints.tests.js
-
-        if (url.indexOf('?file=') >= 0) {
-            // URL parts:
-            // [0] http://localhost/targetprocess/JavaScript/tau/scripts/tests.async/index.html
-            // [1] tests.async/components/board.plus/component.board.plus.hints.tests
-            url = url.split('?file=')[1];
-            return {
-                path: url
-            };
-        } else if (/http:\/\/localhost.+\.js/.test(url)) {
-            var lineAndColumn = (url.split('#')[1] || '').split(':');
-            url = url
-                .replace(/http:\/\/localhost\/targetprocess\/JavaScript\/tau\/scripts\//, '')
-                .replace(/\.js.*/, '');
-            return {
-                path: url,
-                line: lineAndColumn[0],
-                column: lineAndColumn[1]
-            };
-        }
-        return null;
-    }
-
-    /**
      * @param {Object} info
      * @param {String} info.linkUrl
      * @param {Object} tab
      */
     function onItemClick(info, tab) {
-        var url = parseUrl(info.linkUrl);
+        var url = options.parseUrl(info.linkUrl);
 
         if (url) {
             openWithXmlRpc(url.path, url.line, url.column);
