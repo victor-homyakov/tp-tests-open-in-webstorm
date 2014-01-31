@@ -3,7 +3,7 @@
 
     "name": "__MSG_extName__",
     "description": "__MSG_extDescription__",
-    "version": "0.1.9",
+    "version": "0.2.1",
     "default_locale": "en",
 
     "icons": {
@@ -20,6 +20,14 @@
     "background": {
         "scripts": ["app/common.js", "app/background.js"]
     },
+
+    "content_scripts": [
+        {
+            "run_at": "document_idle",
+            "js": ["app/contentScript.js"],
+            "matches": ["*://localhost/*"]
+        }
+    ],
 
     "options_page": "app/options.html"
 }

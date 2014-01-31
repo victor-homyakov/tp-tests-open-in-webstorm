@@ -38,34 +38,49 @@
         xhr.send(args.join(''));
     }
 
-    /**
-     * @param {Object} info
-     * @param {String} info.linkUrl
-     * @param {Object} tab
-     */
-    function onItemClick(info, tab) {
-        var url = options.parseUrl(info.linkUrl);
+    var url;
 
-        if (url) {
-            openWithXmlRpc(url.path, url.line, url.column);
-        } else {
-            alert('This link does not contain path to JavaScript file.');
-        }
+    function onItemClick() {
+        openWithXmlRpc(url.path, url.line, url.column);
     }
+
+    var menuTitle = chrome.i18n.getMessage('title');
 
     var contextMenuProperties = {
         id: 'open-in-webstorm',
-        //type: "normal", // default
-        title: chrome.i18n.getMessage('title'),
+        //type: 'normal', // default
+        enabled: false,
+        title: menuTitle,
         contexts: ['link'], // "all", "page", "frame", "selection", "link", "editable", "image", "video", "audio", "launcher"
         documentUrlPatterns: ['*://localhost/*'],
         onclick: onItemClick
     };
 
     // http://developer.chrome.com/extensions/contextMenus.html#method-create
-    chrome.contextMenus.create(contextMenuProperties, function() {
+    var contextMenuId = chrome.contextMenus.create(contextMenuProperties, function() {
         if (chrome.extension.lastError) {
             console.error('Failed to create context menu: ' + chrome.extension.lastError.message + '.');
         }
+    });
+
+    // http://developer.chrome.com/extensions/messaging.html#simple
+    chrome.runtime.onMessage.addListener(function(request) {
+        var menuProperties = {
+            enabled: request.enabled,
+            title: menuTitle
+        };
+
+        if (request.enabled) {
+            url = options.parseUrl(request.filename);
+            if (url && url.path) {
+                menuProperties.enabled = true;
+                menuProperties.title = menuTitle + ' ' + url.path;
+            } else {
+                menuProperties.enabled = false;
+            }
+        }
+
+        console.log('contextMenus.update', menuProperties);
+        chrome.contextMenus.update(contextMenuId, menuProperties);
     });
 }());
