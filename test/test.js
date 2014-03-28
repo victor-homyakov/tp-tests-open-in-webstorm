@@ -56,13 +56,15 @@ test('Valid URL', 3, function() {
 
 test('Samples', 3, function() {
     deepEqual(
-        options.parseUrl('http://localhost/targetprocess/JavaScript/tau/scripts/tests.async/index.html?file=tests.async/components/board.plus/component.board.plus.hints.tests'),
+        options.parseUrl('http://localhost/targetprocess/JavaScript/tau/scripts/tests.async/' +
+            'index.html?file=tests.async/components/board.plus/component.board.plus.hints.tests'),
         {path: 'tests.async/components/board.plus/component.board.plus.hints.tests'},
         'Rerun file link in async test'
     );
 
     deepEqual(
-        options.parseUrl('http://localhost/TargetProcess/JavaScript/tau/scripts/tests.async/components/board.plus.newlist/component.board.plus.newlist.editor.tests.js#252:22'),
+        options.parseUrl('http://localhost/TargetProcess/JavaScript/tau/scripts/tests.async/' +
+            'components/board.plus.newlist/component.board.plus.newlist.editor.tests.js#252:22'),
         {
             path: 'tests.async/components/board.plus.newlist/component.board.plus.newlist.editor.tests',
             line: '252',
@@ -72,7 +74,8 @@ test('Samples', 3, function() {
     );
 
     deepEqual(
-        options.parseUrl('http://localhost/targetprocess/JavaScript/tau/scripts/tests/view/view.timeline.navigator.tests.js'),
+        options.parseUrl('http://localhost/targetprocess/JavaScript/tau/scripts/tests/' +
+            'view/view.timeline.navigator.tests.js'),
         {path: 'tests/view/view.timeline.navigator.tests'},
         'Sync test'
     );
