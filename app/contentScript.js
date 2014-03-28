@@ -4,7 +4,6 @@
 
     function sendMessage(state, filename) {
         menuEnabled = state;
-        console.log('sendMessage', menuEnabled);
         var message = {enabled: state, filename: filename};
         chrome.runtime.sendMessage(message);
     }
@@ -13,12 +12,12 @@
         return target && (target.tagName === 'A' || target.tagName === 'SPAN');
     }
 
-    function extractFilename(target) {
+    function extractFilename(element) {
         var filename;
-        if (target.tagName === 'A') {
-            filename = target.href;
+        if (element.tagName === 'A') {
+            filename = element.href;
         } else {
-            filename = target.innerText;
+            filename = element.innerText;
         }
         return filename;
     }
